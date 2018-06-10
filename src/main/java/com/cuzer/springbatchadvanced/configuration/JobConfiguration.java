@@ -6,9 +6,11 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobParametersIncrementer;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
+import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JdbcPagingItemReader;
 import org.springframework.batch.item.database.Order;
@@ -38,6 +40,11 @@ public class JobConfiguration {
 	// return DataSourceBuilder.create().build();
 	// }
 	//
+	
+	@Bean
+	public JobParametersIncrementer runIdIncrementer() {
+	    return new RunIdIncrementer();
+	}
 
 	@Bean
 	public JdbcPagingItemReader<Employee> jdbcPagingItemReader(DataSource dataSource1) {
@@ -72,13 +79,13 @@ public class JobConfiguration {
 	}
 
 	public Step step1() {
-		return stepBuilderFactory.get("step1234").<Employee, Employee>chunk(100).reader(jdbcPagingItemReader(dataSource1))
+		return stepBuilderFactory.get("fistStep").<Employee, Employee>chunk(100).reader(jdbcPagingItemReader(dataSource1))
 				.writer(itemWriter()).build();
 	}
 
 	@Bean
 	public Job job1() {
-		return jobBuilderFactory.get("job12345").start(step1()).build();
+		return jobBuilderFactory.get("springAdvanced").incrementer(runIdIncrementer()).start(step1()).build();
 	}
 
 }
