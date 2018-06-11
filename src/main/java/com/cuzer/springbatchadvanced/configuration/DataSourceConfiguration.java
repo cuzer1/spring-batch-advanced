@@ -15,7 +15,7 @@ public class DataSourceConfiguration {
 
 	@Bean
 	@Primary
-	@ConfigurationProperties(prefix="app.datasource.ds1")
+	@ConfigurationProperties(prefix="app.datasource.ds3")
 	public DataSource dataSource() {
 		return DataSourceBuilder.create().build();
 	}
@@ -25,4 +25,5 @@ public class DataSourceConfiguration {
 	public DataSource bl1datasource() {
 		return DataSourceBuilder.create().build();
 	}
+	
 }
