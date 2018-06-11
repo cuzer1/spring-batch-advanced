@@ -1,0 +1,49 @@
+Spring Batch Repository
+
+"docker run --name test-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=testDB -d mysql:5"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Source Database - src_employees
+
+"docker run --name test-src-mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=srcDB -d mysql:5"
+
+
+
+
+
+
+https://dev.mysql.com/doc/employee/en/employees-introduction.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Target Database tgt_employess
+
+"docker run --name test-tgt-mysql -p 3308:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=tgtDB -d mysql:5"
